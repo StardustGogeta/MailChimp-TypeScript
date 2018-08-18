@@ -5,6 +5,7 @@
   "strict": true,
   "noUnusedLocals": true,
   "compilerOptions": {
+    "sourceMap": true,
     "target": "es6",
     "moduleResolution": "node"
   }

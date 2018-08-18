@@ -26,8 +26,6 @@ export class MailChimp {
     // The following line works:
     // request.get("http://us17.api.mailchimp.com/3.0/campaigns?count=1", {headers: {"Authorization": "apikey XXXXXXXXXXX-us17"}},(req, res) => {console.log(JSON.parse(res.body).campaigns[0]);});
     public apiCall(urlExtension : string, callback? : ({}) => void, data? : {}) {
-        // console.log(this.BASE_URL+urlExtension);
-        // console.log(urlExtension, opts, callback);
         request.get(this.BASE_URL + urlExtension + this.encodeQuery(data), {headers: {"Authorization": "apikey " + this.API_KEY}}, (req, res) => { callback(JSON.parse(res.body)); });
     }
 

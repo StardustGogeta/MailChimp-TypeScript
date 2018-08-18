@@ -3,7 +3,8 @@
 
 # JavaScript compiled files
 *.js
+!jest.config.js
 
-# Testing files
+# Personal testing files
 test.ts
 config.ts
