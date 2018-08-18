@@ -1,9 +1,11 @@
 {
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "compilerOptions": {
-      "target": "es6"
-    }
+  "resolveJsonModule": true,
+  "forceConsistentCasingInFileNames": true,
+  "noImplicitReturns": true,
+  "strict": true,
+  "noUnusedLocals": true,
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node"
+  }
 }
