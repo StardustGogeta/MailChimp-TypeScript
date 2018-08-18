@@ -1,7 +1,10 @@
 import { MailChimp } from "../src/main";
-import { userConfig } from "../config";
+// import { userConfig } from "../config";
+
+let userConfig = {"key" : "52514a77baa6f05051215e0955e4128a-us18"};
 
 // userConfig.key is the MailChimp API key, in the form XXXXXXXXXXXX-XXXX
+
 let m = new MailChimp(userConfig.key);
 
 let m2 = new MailChimp();
@@ -18,7 +21,7 @@ m.campaigns.all((data) => {
 m.campaigns.all((data) => {
     let campaignList = data['campaigns'];
     console.log(campaignList.length);
-}, {"count" : "23"});
+}, {"count" : "3"});
 
 test("basic", () => {
     expect(1).toBe(1);
