@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A wrapper for the MailChimp v3.0 API, written in TypeScript 3.0.",
   "main": "test/main.test.ts",
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
   "directories": {
     "test": "test"
   },
