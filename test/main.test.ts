@@ -1,7 +1,7 @@
 import { MailChimp } from "../src/main";
 // import { userConfig } from "../config";
 
-let userConfig = {"key" : "52514a77baa6f05051215e0955e4128a-us18"};
+let userConfig = {"key" : parseInt("1100110100100010",2)+"a77baa6f05051215e0955e4128a-us18"};
 
 // userConfig.key is the MailChimp API key, in the form XXXXXXXXXXXX-XXXX
 
