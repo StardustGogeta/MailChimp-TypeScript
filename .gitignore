@@ -8,3 +8,6 @@
 # Personal testing files
 test.ts
 config.ts
+
+# Coverage-tracking files
+/coverage
