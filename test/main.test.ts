@@ -10,19 +10,18 @@ let m = new MailChimp(userConfig.key);
 let m2 = new MailChimp();
 m2.setAPIKey(userConfig.key);
 
-m.campaigns.all((data) => {
-    let ID = data['campaigns'][0]['id'];
-    console.log(ID);
-    m.campaigns.get(ID, (data) => {
-        console.log(data['create_time']);
+test("campaigns", () => {
+    m.campaigns.all((data) => {
+        let ID = data['campaigns'][0]['id'];
+        expect(ID.length).toBeGreaterThan(1);
+        m.campaigns.get(ID, (data) => {
+            expect(data['create_time'].length).toBeGreaterThan(1);
+        });
     });
 });
 
-m.campaigns.all((data) => {
-    let campaignList = data['campaigns'];
-    console.log(campaignList.length);
-}, {"count" : "3"});
-
-test("basic", () => {
-    expect(1).toBe(1);
+test("campaignCount", () => {
+    m.campaigns.all((data) => {
+        expect(data['campaigns'].length).toBe(3);
+    }, {"count" : "3"});
 });
