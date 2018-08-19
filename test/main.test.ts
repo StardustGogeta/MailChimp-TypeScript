@@ -13,10 +13,13 @@ m2.setAPIKey(userConfig.key);
 test("campaigns", () => {
     m.campaigns.all((data) => {
         let ID = data['campaigns'][0]['id'];
-        expect(ID.length).toBeGreaterThan(1);
-        m.campaigns.get(ID, (data) => {
-            expect(data['create_time'].length).toBeGreaterThan(1);
-        });
+        expect(ID.length).toBeGreaterThan(8);
+    });
+});
+
+test("campaignByID", () => {
+    m.campaigns.get("29fbf8137a", (data) => {
+        expect(data['create_time'].length).toBeGreaterThan(5);
     });
 });
 
