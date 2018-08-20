@@ -8,11 +8,17 @@ export class Campaigns {
     }
 
     public all(cb? : ({}) => void, data? : {}) {
-        this.client.apiCall("campaigns", cb, data);
+        this.client.apiCall("GET", "campaigns", cb, data);
     }
 
+    /*
+    public create(cb? : ({}) => void, data? : {}) {
+        this.client.apiCall("POST", "campaigns", cb, data);
+    }
+    */
+
     public get(id : string, cb? : ({}) => void, data? : {}) {
-        this.client.apiCall("campaigns/" + id, cb, data);
+        this.client.apiCall("GET", "campaigns/" + id, cb, data);
     }
 }
 

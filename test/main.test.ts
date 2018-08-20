@@ -10,21 +10,34 @@ let m = new MailChimp(userConfig.key);
 let m2 = new MailChimp();
 m2.setAPIKey(userConfig.key);
 
-test("campaigns", () => {
+test("campaignsAll", done => {
     m.campaigns.all((data) => {
-        let ID = data['campaigns'][0]['id'];
-        expect(ID.length).toBeGreaterThan(8);
+        let firstID : string = data['campaigns'][0]['id'];
+        expect(firstID.length).toBe(10);
+        done();
     });
 });
 
-test("campaignByID", () => {
-    m.campaigns.get("29fbf8137a", (data) => {
-        expect(data['create_time'].length).toBeGreaterThan(5);
-    });
-});
-
-test("campaignCount", () => {
+test("campaignsAllData", done => {
     m.campaigns.all((data) => {
         expect(data['campaigns'].length).toBe(3);
+        done();
     }, {"count" : "3"});
+});
+
+/*
+test("campaignsCreate", done => {
+    m.campaigns.create((data) => {
+        console.log(data);
+        expect(data['campaigns'].length).toBe(3);
+        done();
+    }, {"type" : "regular"});
+});
+*/
+
+test("campaignsGet", done => {
+    m.campaigns.get("29fbf8137a", (data) => {
+        expect(data['create_time'].length).toBe(25);
+        done();
+    });
 });
