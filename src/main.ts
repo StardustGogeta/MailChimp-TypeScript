@@ -31,7 +31,7 @@ export class MailChimp {
             method: method,
             json : data,
             headers : {"Authorization": "apikey " + this.API_KEY}
-        }, (err, res, body) => { /*console.log("LOGGING", typeof body, urlExtension, method, data); if (method === "PATCH") console.log(body); */ callback(body); });
+        }, (err, res, body) => { callback(body); });
     }
 
     public campaigns = new Campaigns(this);
