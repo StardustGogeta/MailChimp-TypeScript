@@ -7,18 +7,22 @@ export class Campaigns {
         this.actions = new Actions(this.client);
     }
 
-    public all(cb? : ({}) => void, data? : {}) {
-        this.client.apiCall("GET", "campaigns", cb, data);
-    }
-
     /*
-    public create(cb? : ({}) => void, data? : {}) {
+    public create(cb? : ({}) => void, queryData? : {}, data? : {}) {
         this.client.apiCall("POST", "campaigns", cb, data);
     }
     */
 
-    public get(id : string, cb? : ({}) => void, data? : {}) {
-        this.client.apiCall("GET", "campaigns/" + id, cb, data);
+    public all(cb? : ({}) => void, queryData? : {}, data? : {}) {
+        this.client.apiCall("GET", "campaigns", cb, queryData, data);
+    }
+
+    public get(id : string, cb? : ({}) => void, queryData? : {}, data? : {}) {
+        this.client.apiCall("GET", "campaigns/" + id, cb, queryData, data);
+    }
+
+    public update(id : string, cb? : ({}) => void, data? : {}) {
+        this.client.apiCall("PATCH", "campaigns/" + id, cb, {}, data);
     }
 }
 

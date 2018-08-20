@@ -10,21 +10,6 @@ let m = new MailChimp(userConfig.key);
 let m2 = new MailChimp();
 m2.setAPIKey(userConfig.key);
 
-test("campaignsAll", done => {
-    m.campaigns.all((data) => {
-        let firstID : string = data['campaigns'][0]['id'];
-        expect(firstID.length).toBe(10);
-        done();
-    });
-});
-
-test("campaignsAllData", done => {
-    m.campaigns.all((data) => {
-        expect(data['campaigns'].length).toBe(3);
-        done();
-    }, {"count" : "3"});
-});
-
 /*
 test("campaignsCreate", done => {
     m.campaigns.create((data) => {
@@ -35,9 +20,36 @@ test("campaignsCreate", done => {
 });
 */
 
+test("campaignsAll", done => {
+    m.campaigns.all((data) => {
+        let firstID : string = data['campaigns'][5]['id'];
+        expect(firstID.length).toBe(10);
+        done();
+    });
+});
+
+test("campaignsAllData", done => {
+    m.campaigns.all((data) => {
+        expect(data['campaigns'].length).toBe(3);
+        done();
+    }, {count : 3});
+});
+
 test("campaignsGet", done => {
-    m.campaigns.get("29fbf8137a", (data) => {
+    m.campaigns.get("3c2dd5a6a8", (data) => {
         expect(data['create_time'].length).toBe(25);
         done();
+    });
+});
+
+// A sample list ID is f9240dceb6
+test("campaignsUpdate", done => {
+    let title = Math.floor(Math.random()*10**10).toString();
+    m.campaigns.update("3c2dd5a6a8", (data) => {
+        expect(data['settings']['subject_line']).toBe(title);
+        done();
+    }, {
+        "recipients": {"list_id": "f9240dceb6"},
+        "settings": {"subject_line": title, "from_name": "ME", "reply_to": "cyberbullyingdetection@gmail.com"}
     });
 });
