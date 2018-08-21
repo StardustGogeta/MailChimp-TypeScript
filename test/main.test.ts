@@ -10,15 +10,16 @@ let m = new MailChimp(userConfig.key);
 let m2 = new MailChimp();
 m2.setAPIKey(userConfig.key);
 
-/*
-test("campaignsCreate", done => {
+test("campaignsCreateAndDelete", done => {
     m.campaigns.create((data) => {
-        console.log(data);
-        expect(data['campaigns'].length).toBe(3);
-        done();
-    }, {"type" : "regular"});
+        expect(data["settings"]["subject_line"]).toBe("Newly created!");
+        m.campaigns.delete(data["id"], done);
+    }, {
+        "recipients": {"list_id": "f9240dceb6"},
+        "settings": {"subject_line": "Newly created!", "from_name": "ME", "reply_to": "cyberbullyingdetection@gmail.com"},
+        "type" : "regular"
+    });
 });
-*/
 
 test("campaignsAll", done => {
     m.campaigns.all((data) => {

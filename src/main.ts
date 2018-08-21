@@ -23,7 +23,7 @@ export class MailChimp {
 
     // The following line works:
     // request.get("http://us17.api.mailchimp.com/3.0/campaigns?count=1", {headers: {"Authorization": "apikey XXXXXXXXXXX-us17"}},(req, res) => {console.log(JSON.parse(res.body).campaigns[0]);});
-    public apiCall(method : string, urlExtension : string, callback? : ({}) => void | undefined, queryData? : {} | undefined, data? : {} | undefined) {
+    public api(method : string, urlExtension : string, callback? : ({}) => void, queryData? : {}, data? : {}) {
         if (callback === undefined) callback = a => {};
         if (data === undefined) data = {};
         request({
