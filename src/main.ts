@@ -32,6 +32,7 @@ export class MailChimp {
             json : data,
             headers : {"Authorization": "apikey " + this.API_KEY}
         }, (err, res, body) => { callback(body); });
+        return "API call successfully made.";
     }
 
     public campaigns = new Campaigns(this);

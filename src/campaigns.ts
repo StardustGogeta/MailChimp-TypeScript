@@ -14,7 +14,7 @@ export class Campaigns {
                 [_ : string] : string
             },
             settings : {
-                subject_line : string, 
+                subject_line : string, // TODO: Handle this more carefully. Variate campaigns don't need it if they have "subject_lines".
                 from_name : string,
                 reply_to : string,
                 [_ : string] : string
@@ -31,6 +31,10 @@ export class Campaigns {
                         throw new Error("Invalid winner criteria.");
                 } else throw new Error("No winner criteria.");
             } else throw new Error("No variate settings.");
+            if (data.hasOwnProperty("tracking")) {
+                if (!data.tracking.hasOwnProperty("text_clicks"))
+                    throw new Error("No text-click tracking.");
+            } else throw new Error("No tracking.");
         } else if (data.type === "rss") {
             if (data.hasOwnProperty("rss_opts")) {
                 if (!data.rss_opts.hasOwnProperty("feed_url"))
@@ -41,15 +45,15 @@ export class Campaigns {
                 } else throw new Error("No RSS frequency.");
             } else throw new Error("No RSS options.");
         }
-        this.client.api("POST", "campaigns", callback, {}, data);
+        return this.client.api("POST", "campaigns", callback, {}, data);
     }
 
     public all(callback? : ({}) => void, queryData? : {}) {
-        this.client.api("GET", "campaigns", callback, queryData);
+        return this.client.api("GET", "campaigns", callback, queryData);
     }
 
     public get(id : string, callback? : ({}) => void, queryData? : {}) {
-        this.client.api("GET", "campaigns/" + id, callback, queryData);
+        return this.client.api("GET", "campaigns/" + id, callback, queryData);
     }
 
     public update(id : string, callback? : ({}) => void,
@@ -62,11 +66,11 @@ export class Campaigns {
             },
             [_ : string] : any
         }) {
-        this.client.api("PATCH", "campaigns/" + id, callback, {}, data);
+        return this.client.api("PATCH", "campaigns/" + id, callback, {}, data);
     }
 
     public delete(id: string, callback? : ({}) => void) {
-        this.client.api("DELETE", "campaigns/" + id, callback);
+        return this.client.api("DELETE", "campaigns/" + id, callback);
     }
 }
 
@@ -81,7 +85,7 @@ class Actions {
     public cancel(id) {
         console.log(this.client);
         console.log(this.client.REGION);
-        this.client.api("https://example.com");
+        return this.client.api("https://example.com");
     }
     */
 }
