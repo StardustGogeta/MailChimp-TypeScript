@@ -6,9 +6,10 @@ let userConfig = {"key" : parseInt("1100110100100010",2)+"a77baa6f05051215e0955e
 // userConfig.key is the MailChimp API key, in the form XXXXXXXXXXXX-XXXX
 
 let m = new MailChimp(userConfig.key);
-
-let m2 = new MailChimp();
-m2.setAPIKey(userConfig.key);
+/* Alternatively, 
+let m = new MailChimp();
+m.setAPIKey(userConfig.key);
+*/
 
 test("campaignsCreateAndDelete", done => {
     m.campaigns.create((data) => {
