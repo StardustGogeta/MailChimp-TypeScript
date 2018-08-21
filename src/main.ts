@@ -1,4 +1,4 @@
-import {Campaigns} from "./Campaigns";
+import {Campaigns} from "./campaigns2";
 import * as request from "request";
 
 export class MailChimp {
