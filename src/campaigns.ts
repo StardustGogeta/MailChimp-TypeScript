@@ -53,7 +53,7 @@ export class Campaigns {
     }
 
     public get(id : string, callback? : ({}) => void, queryData? : {}) {
-        return this.client.api("GET", "campaigns/" + id, callback, queryData);
+        return this.client.api("GET", `campaigns/${id}`, callback, queryData);
     }
 
     public update(id : string, callback? : ({}) => void,
@@ -66,11 +66,11 @@ export class Campaigns {
             },
             [_ : string] : any
         }) {
-        return this.client.api("PATCH", "campaigns/" + id, callback, {}, data);
+        return this.client.api("PATCH", `campaigns/${id}`, callback, {}, data);
     }
 
     public delete(id: string, callback? : ({}) => void) {
-        return this.client.api("DELETE", "campaigns/" + id, callback);
+        return this.client.api("DELETE", `campaigns/${id}`, callback);
     }
 }
 
@@ -81,11 +81,36 @@ class Actions {
         this.client = client;
     }
 
-    /*
-    public cancel(id) {
-        console.log(this.client);
-        console.log(this.client.REGION);
-        return this.client.api("https://example.com");
+    public cancel(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/cancel-send`, callback);
     }
-    */
+    
+    public pause(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/pause`, callback);
+    }
+
+    public replicate(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/replicate`, callback);
+    }
+
+    public resume(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/resume`, callback);
+    }
+
+    public schedule(id, data : {schedule_time : string, [_ : string] : string}, callback? : ({}) => void) {
+        // TODO: Batch delivery quirks
+        return this.client.api("POST", `campaigns/${id}/actions/schedule`, callback, {}, data);
+    }
+
+    public send(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/send`, callback);
+    }
+
+    public test(id, data : {test_emails : [string], send_type : string}, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/test`, callback, {}, data);
+    }
+
+    public unschedule(id, callback? : ({}) => void) {
+        return this.client.api("POST", `campaigns/${id}/actions/unschedule`, callback);
+    }
 }
