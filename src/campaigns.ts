@@ -14,7 +14,7 @@ export class Campaigns {
                 [_ : string] : string
             },
             settings : {
-                subject_line : string, // TODO: Handle this more carefully. Variate campaigns don't need it if they have "subject_lines".
+                subject_line : string,
                 from_name : string,
                 reply_to : string,
                 [_ : string] : string
